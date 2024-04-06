@@ -74,7 +74,8 @@ jobs:
         echo $PATH
 
     - name: Build with Maven
-      run: mvn -B clean install -Pprod -f pom.xml
+      # run: mvn -B clean install -Pprod -f pom.xml
+      run: mvn -e clean install -Pprod -f pom.xml
 
     - name: Print environment variables
       run: |
