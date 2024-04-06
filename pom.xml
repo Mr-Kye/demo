@@ -13,10 +13,52 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>demo</name>
 	<description>Demo project for Spring Boot</description>
-	<properties>
+	<!-- <properties>
 		<java.version>17</java.version>
 		<project.basedir>D:/vscode-work/vscode-workspace/demo/libs</project.basedir>
-	</properties>
+	</properties> -->
+	<profiles>
+        <!-- 개발 모드 프로파일 -->
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <!-- 여기에 개발 환경 특화 속성을 정의 -->
+                <env>development</env>
+				<java.version>17</java.version>
+				<project.basedir>D:/vscode-work/vscode-workspace/demo/libs</project.basedir>
+            </properties>
+            <dependencies>
+                <!-- 개발 환경에서만 필요한 의존성 -->
+            </dependencies>
+            <!-- 기타 개발 환경 설정 -->
+        </profile>
+
+        <!-- 운영 모드 프로파일 -->
+        <profile>
+            <id>prod</id>
+            <properties>
+                <!-- 여기에 운영 환경 특화 속성을 정의 -->
+                <env>production</env>
+				<java.version>22</java.version>
+				<project.basedir>D:/vscode-work/vscode-workspace/demo/libs-prod</project.basedir>
+            </properties>
+            <dependencies>
+                <!-- 운영 환경에서만 필요한 의존성 -->
+				<dependency>
+					<groupId>com.example</groupId>
+					<artifactId>jasypt-spring31</artifactId>
+					<version>1.9.2</version>
+					<scope>system</scope>
+					<systemPath>${project.basedir}/libs/jasypt-spring31-1.9.2</systemPath>
+				</dependency>
+            </dependencies>
+            <!-- 기타 운영 환경 설정 -->
+        </profile>
+    </profiles>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
