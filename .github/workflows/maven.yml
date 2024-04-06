@@ -52,7 +52,7 @@ jobs:
     - name: Copy libraries - prod mode
       run: |
         mkdir -p ~/.m2/repository/com/example/jasypt/1.9.2
-        cp libs-${{ env.mode }}/jasypt-1.9.2.jar ~/.m2/repository/com/example/jasypt/1.9.2/jasypt-1.9.2.jar
+        cp libs/jasypt-1.9.2.jar ~/.m2/repository/com/example/jasypt/1.9.2/jasypt-1.9.2.jar
         mkdir -p ~/.m2/repository/com/example/jasypt-spring31/1.9.2
         cp libs-${{ env.mode }}/jasypt-spring31-1.9.2.jar ~/.m2/repository/com/example/jasypt-spring31/1.9.2/jasypt-spring31-1.9.2.jar
 
