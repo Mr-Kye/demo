@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [ main ]
 
+env:
+  # JAVA_HOME: /usr/lib/jvm/java-11-openjdk-amd64
+  MAVEN_OPTS: -Xmx2048m
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -28,7 +32,7 @@ jobs:
       uses: actions/setup-java@v4
       with:
         java-version: '22'
-        distribution: 'adopt'
+        distribution: 'openjdk'
 
     - name: Cache local Maven repository
       uses: actions/cache@v4
@@ -43,6 +47,9 @@ jobs:
         mkdir -p ~/.m2/repository/com/example/jasypt/1.9.2
         cp libs/jasypt-1.9.2.jar ~/.m2/repository/com/example/jasypt/1.9.2/jasypt-1.9.2.jar
 
+    - name: Set custom Maven options
+      run: echo "MAVEN_OPTS=-Dmaven.test.skip=true" >> $GITHUB_ENV
+
     - name: Current Path(cli exmaple1)
       run: echo $PATH
 
@@ -52,3 +59,8 @@ jobs:
 
     - name: Build with Maven
       run: mvn -B clean install -Pprod -f pom.xml
+
+    - name: Print environment variables
+      run: |
+        echo "JAVA_HOME: ${{ env.JAVA_HOME }}"
+        echo "MAVEN_OPTS: ${{ env.MAVEN_OPTS }}"
