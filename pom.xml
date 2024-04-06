@@ -14,8 +14,8 @@
 	<name>demo</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<!-- <java.version>17</java.version> -->
-		<project.basedir>D:/vscode-work/vscode-workspace/demo/libs</project.basedir>
+		<!-- <java.version>17</java.version>
+		<project.basedir>D:/vscode-work/vscode-workspace/demo</project.basedir> -->
 	</properties>
 	<profiles>
         <!-- 개발 모드 프로파일 -->
@@ -28,7 +28,7 @@
                 <!-- 여기에 개발 환경 특화 속성을 정의 -->
                 <env>development</env>
 				<java.version>17</java.version>
-				<!-- <project.basedir>D:/vscode-work/vscode-workspace/demo</project.basedir> -->
+				<dev.lib.dir>D:/vscode-work/vscode-workspace/demo/libs</dev.lib.dir>
             </properties>
             <dependencies>
                 <!-- 개발 환경에서만 필요한 의존성 -->
@@ -76,7 +76,7 @@
 			<artifactId>jasypt</artifactId>
 			<version>1.9.2</version>
 			<scope>system</scope>
-			<systemPath>${project.basedir}/jasypt-1.9.2.jar</systemPath>
+			<systemPath>${project.basedir}/libs/jasypt-1.9.2.jar</systemPath>
 		</dependency>
 	</dependencies>
 
