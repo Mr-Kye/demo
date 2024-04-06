@@ -52,7 +52,7 @@
 					<artifactId>jasypt-spring31</artifactId>
 					<version>1.9.2</version>
 					<scope>system</scope>
-					<systemPath>${project.prod.lib.dir}/jasypt-spring31-1.9.2</systemPath>
+					<systemPath>${prod.lib.dir}/jasypt-spring31-1.9.2</systemPath>
 				</dependency>
             </dependencies>
             <!-- 기타 운영 환경 설정 -->
