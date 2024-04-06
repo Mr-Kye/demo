@@ -21,6 +21,8 @@ jobs:
     # v3(Node 16, deprecated) -> v4(Node 20)
     steps:
     - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # 모든 히스토리를 가져오기 위해 필요
 
     # test - dev
     # - name: Set up JDK 17
@@ -86,3 +88,17 @@ jobs:
       run: |
         echo "JAVA_HOME: ${{ env.JAVA_HOME }}"
         echo "MAVEN_OPTS: ${{ env.MAVEN_OPTS }}"
+        echo "mode: ${{ env.mode }}"
+        
+    - name: Get the last commit message
+      id: commit-message
+      run: echo "::set-output name=message::$(git log -1 --pretty=%B)"
+
+    - name: Create and push tag
+      run: |
+        COMMIT_MSG="${{ steps.commit-message.outputs.message }}"
+        TAG_NAME=$(echo "$COMMIT_MSG" | head -n 1 | sed 's/ /_/g')
+        git tag "$TAG_NAME"
+        git push origin "$TAG_NAME"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
