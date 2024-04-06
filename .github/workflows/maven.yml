@@ -90,6 +90,7 @@ jobs:
         echo "MAVEN_OPTS: ${{ env.MAVEN_OPTS }}"
         echo "mode: ${{ env.mode }}"
 
+    # 여기서 부터 진행(최종 커밋 시 tag 생성, release-drafter/Conventional Commits 리서치)
     - name: Get the last commit message
       id: commit-message
       run: echo "message=$(git log -1 --pretty=%B)" >> $GITHUB_STATE
