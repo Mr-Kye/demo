@@ -28,7 +28,6 @@
                 <!-- 여기에 개발 환경 특화 속성을 정의 -->
                 <env>development</env>
 				<java.version>17</java.version>
-				<dev.lib.dir>D:/vscode-work/vscode-workspace/demo/libs</dev.lib.dir>
             </properties>
             <dependencies>
                 <!-- 개발 환경에서만 필요한 의존성 -->
@@ -43,7 +42,6 @@
                 <!-- 여기에 운영 환경 특화 속성을 정의 -->
                 <env>production</env>
 				<java.version>22</java.version>
-				<prod.lib.dir>D:/vscode-work/vscode-workspace/demo/libs-prod</prod.lib.dir>
             </properties>
             <dependencies>
                 <!-- 운영 환경에서만 필요한 의존성 -->
@@ -52,7 +50,7 @@
 					<artifactId>jasypt-spring31</artifactId>
 					<version>1.9.2</version>
 					<scope>system</scope>
-					<systemPath>${prod.lib.dir}/jasypt-spring31-1.9.2</systemPath>
+					<systemPath>${project.basedir}/libs-prod/jasypt-spring31-1.9.2</systemPath>
 				</dependency>
             </dependencies>
             <!-- 기타 운영 환경 설정 -->
