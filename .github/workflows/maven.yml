@@ -40,4 +40,4 @@ jobs:
         echo $PATH
 
     - name: Build with Maven
-      run: mvn -B clean install
+      run: mvn -B clean install -f pom.xml
