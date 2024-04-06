@@ -89,14 +89,14 @@ jobs:
         echo "JAVA_HOME: ${{ env.JAVA_HOME }}"
         echo "MAVEN_OPTS: ${{ env.MAVEN_OPTS }}"
         echo "mode: ${{ env.mode }}"
-        
+
     - name: Get the last commit message
       id: commit-message
-      run: echo "::set-output name=message::$(git log -1 --pretty=%B)"
+      run: echo "message=$(git log -1 --pretty=%B)" >> $GITHUB_STATE
 
     - name: Create and push tag
       run: |
-        COMMIT_MSG="${{ steps.commit-message.outputs.message }}"
+        COMMIT_MSG=$GITHUB_STATE
         TAG_NAME=$(echo "$COMMIT_MSG" | head -n 1 | sed 's/ /_/g')
         git tag "$TAG_NAME"
         git push origin "$TAG_NAME"
