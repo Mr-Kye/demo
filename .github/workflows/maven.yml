@@ -32,10 +32,16 @@ jobs:
     #     distribution: 'adopt'
 
     # java Supported distributions: https://github.com/actions/setup-java?tab=readme-ov-file
-    - name: Set up JDK 22
+    # - name: Set up JDK 22
+    #   uses: actions/setup-java@v4
+    #   with:
+    #     java-version: '22'
+    #     distribution: 'oracle'
+
+    - name: Set up JDK 8
       uses: actions/setup-java@v4
       with:
-        java-version: '22'
+        java-version: '8'
         distribution: 'oracle'
 
     - name: Cache local Maven repository
@@ -51,14 +57,19 @@ jobs:
     #     mkdir -p ~/.m2/repository/com/example/jasypt/1.9.2
     #     cp libs-${{ env.mode }}/jasypt-1.9.2.jar ~/.m2/repository/com/example/jasypt/1.9.2/jasypt-1.9.2.jar
 
-    - name: Copy libraries1 - prod mode
+    - name: Copy libraries - dev mode
       run: |
-        echo "Current Path1: $PWD"
-        ls -lart
         mkdir -p ~/.m2/repository/com/example/jasypt/1.9.2
         cp libs/jasypt-1.9.2.jar ~/.m2/repository/com/example/jasypt/1.9.2/jasypt-1.9.2.jar
-        mkdir -p ~/.m2/repository/com/example/jasypt-spring31/1.9.2
-        cp libs-prod/jasypt-spring31-1.9.2.jar ~/.m2/repository/com/example/jasypt-spring31/1.9.2/jasypt-spring31-1.9.2.jar
+
+    # - name: Copy libraries1 - prod mode
+    #   run: |
+    #     echo "Current Path1: $PWD"
+    #     ls -lart
+    #     mkdir -p ~/.m2/repository/com/example/jasypt/1.9.2
+    #     cp libs/jasypt-1.9.2.jar ~/.m2/repository/com/example/jasypt/1.9.2/jasypt-1.9.2.jar
+    #     mkdir -p ~/.m2/repository/com/example/jasypt-spring31/1.9.2
+    #     cp libs-prod/jasypt-spring31-1.9.2.jar ~/.m2/repository/com/example/jasypt-spring31/1.9.2/jasypt-spring31-1.9.2.jar
         
     
     # - name: Copy libraries2 - prod mode
@@ -82,7 +93,8 @@ jobs:
     - name: Build with Maven
       # run: mvn -B clean install -Pprod -f pom.xml
       # stack trace, -e
-      run: mvn -e clean install -Pprod -f pom.xml
+      # run: mvn -e clean install -Pprod -f pom.xml
+      run: mvn -e clean install -Pdev -f pom.xml
 
     - name: Print environment variables
       run: |
