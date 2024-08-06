@@ -27,7 +27,7 @@
             <properties>
                 <!-- 여기에 개발 환경 특화 속성을 정의 -->
                 <env>development</env>
-				<java.version>17</java.version>
+				<java.version>8</java.version>
             </properties>
             <dependencies>
                 <!-- 개발 환경에서만 필요한 의존성 -->
